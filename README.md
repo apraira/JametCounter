@@ -1,1 +1,1 @@
-love bot on twitter @JametCounter
+Count your jametness on twitter --> @JametCounter
