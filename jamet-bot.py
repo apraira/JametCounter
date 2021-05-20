@@ -92,17 +92,17 @@ class StreamListener(tweepy.StreamListener):
                 else:
                     #taro sini
                     #import foto
-                    newbie = Image.open(".\asset\newbie.jpg")
-                    junior = Image.open(".\asset\junior.jpg")
-                    senior = Image.open(".\asset\senior.jpg")
-                    expert = Image.open(".\asset\expert.jpg")
-                    tothebone = Image.open(".\asset\tothebone.jpg")
+                    newbie = Image.open("./asset/newbie.jpg")
+                    junior = Image.open("./asset/junior.jpg")
+                    senior = Image.open("./asset/senior.jpg")
+                    expert = Image.open("./asset/expert.jpg")
+                    tothebone = Image.open("./asset/tothebone.jpg")
 
 
 
                     #font declaration
-                    title_font = ImageFont.truetype(".\asset\Montserrat-Bold.ttf", 72)
-                    date_font = ImageFont.truetype(".\asset\Montserrat\Montserrat-Bold.ttf", 12)
+                    title_font = ImageFont.truetype("./asset/Montserrat-Bold.ttf", 72)
+                    date_font = ImageFont.truetype("./asset/Montserrat-Bold.ttf", 12)
                     
                     
                     angka = random.randint(1,100)
@@ -148,10 +148,10 @@ class StreamListener(tweepy.StreamListener):
                     #tanggal hari ini
                     image_editable.text((350,570), date, font=date_font, align="right", anchor ="rs", fill="white")
                     
-                    my_image.save(".\asset\result.jpg")
+                    my_image.save("./asset/result.jpg")
                     
                     #load hasil
-                    hasil = ".\asset\result.jpg"
+                    hasil = "./asset/result.jpg"
                     
                     
                     
