@@ -146,7 +146,7 @@ class StreamListener(tweepy.StreamListener):
                     image_editable.text(((W-w)/2, (H-h)/2), username , font=title_font,  fill="white")
                     
                     #tanggal hari ini
-                    image_editable.text((350,570), date, font=date_font, align="right", anchor ="rs", fill="white")
+                    #image_editable.text((350,570), date, font=date_font, align="right", anchor ="rs", fill="white")
                     
                     my_image.save("./asset/result.jpg")
                     
