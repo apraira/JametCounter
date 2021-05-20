@@ -5,7 +5,6 @@ from os import environ
 import tweepy
 from urllib3.exceptions import ProtocolError
 import random
-import pyaztro
 import datetime
 from PIL import Image, ImageFont, ImageDraw 
 import matplotlib.pyplot as plt
