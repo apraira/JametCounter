@@ -9,6 +9,8 @@ import datetime
 from PIL import Image, ImageFont, ImageDraw 
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
+import pandas as pd
+
 
 
 #sekarang lagi make piku
@@ -127,6 +129,8 @@ class StreamListener(tweepy.StreamListener):
                     kata2 = ""
                     username = status.user.screen_name
                     x = datetime.datetime.now()
+
+                    x = pd.to_datetime(x).tz_convert('Etc/GMT+7')
 
                     tahun = x.year
                     bulan = x.strftime("%B")
