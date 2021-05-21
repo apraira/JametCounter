@@ -88,8 +88,8 @@ class StreamListener(tweepy.StreamListener):
                 #kalo followers kurang dari 40
                 elif nfolls < 10:
                     
-                    time.sleep(20)
-                    api.update_status("@" + status.user.screen_name + " " + 'Maaf followers harus di atas 10 untuk menggunakan bot ini.', in_reply_to_status_id=status.id)
+                    time.sleep(10)
+                    api.update_status('Maaf followers harus di atas 10 untuk menggunakan bot ini.', in_reply_to_status_id=status.id)
                     print(str(StreamListener.tweet_counter) + ". (less than 10 followers)" + status.user.screen_name +
                                   ": " + status.text + " ( replied )")
 
@@ -195,9 +195,9 @@ class StreamListener(tweepy.StreamListener):
                     
                     
                     
-                    time.sleep(20)
+                    time.sleep(30)
                     # posting the tweet
-                    api.update_with_media(hasil, "@" + username + " " + kata2 , in_reply_to_status_id = status.id)
+                    api.update_with_media(hasil,  kata2 , in_reply_to_status_id = status.id)
                     
                     
                     
@@ -229,8 +229,8 @@ class StreamListener(tweepy.StreamListener):
 
                 #reply suruh follow dulu
                 else:
-                    time.sleep(20)
-                    api.update_status("@" + status.user.screen_name + " " + 'Follow dulu ngab, terus coba lagi', in_reply_to_status_id=status.id)
+                    time.sleep(30)
+                    api.update_status('Follow dulu ngab, terus coba lagi', in_reply_to_status_id=status.id)
                    
                     print(">"  +
                         status.user.screen_name + ": must follow first"  + " ( replied )") 
