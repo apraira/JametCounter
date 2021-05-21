@@ -128,7 +128,7 @@ class StreamListener(tweepy.StreamListener):
                     ang = str(angka) + "%"
                     kata2 = ""
                     username = status.user.screen_name
-                    x = datetime.datetime.now()
+                    x = datetime.now()
 
                     
                     tz = timezone(timedelta(hours=7))
