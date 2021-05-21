@@ -30,6 +30,8 @@ class StreamListener(tweepy.StreamListener):
     tweet_counter = 0
     nkata = 0
     total_predict = 0
+
+    titel_sebelum = ""
     
     
     
@@ -106,6 +108,21 @@ class StreamListener(tweepy.StreamListener):
                     
                     
                     angka = random.randint(1,100)
+
+                    if StreamListener.titel_sebelum == "newbie":
+                        angka = random.randint(31,100)
+                    elif StreamListener.titel_sebelum == "junior":
+                        angka = random.randint(51,100)
+                    elif StreamListener.titel_sebelum == "senior":
+                        angka = random.randint(81,100)
+                    elif StreamListener.titel_sebelum == "expert":
+                        angka = random.randint(96,100)
+                    elif StreamListener.titel_sebelum == "tothebone":
+                        angka = random.randint(0,30)
+                    else:
+                        angka = angka                
+                        
+
                     ang = str(angka) + "%"
                     kata2 = ""
                     username = status.user.screen_name
@@ -114,27 +131,39 @@ class StreamListener(tweepy.StreamListener):
                     tahun = x.year
                     bulan = x.strftime("%B")
                     tanggal = x.strftime("%d")
+                    titel = ""
 
                     date = str(tanggal) + ' ' + bulan + ' ' + str(tahun)
+                    
 
                     if angka > 0 and angka < 31:
-                        kata2 = "Selamat! skor kejametan kamu...,,, " + ang + "! jangan syedih, tingkatkan lagi ya :D"
+                        kata2 = "Selamat! skor kejametan kamu...,,, " + ang + "! Kamu mendapatkan title JAMET NEWBIE, selamat yaa. :)"
                         my_image = newbie
+                        titel = "newbie"
 
                     elif angka > 30 and angka < 51:
-                        kata2 = "Widih lumayan lah ya skor kejametan kak " + username + " " + ang + ", tambah lagie laahh"
+                        kata2 = "Widih, skor kak " + username + " " + ang + "! Selamat mendapat title sebagai JAMET JUNIOR."
                         my_image = junior
+                        titel = "junior"
+
                     elif angka > 50 and angka < 81:
-                        kata2 = "EEEEEH GILSSS, "+ username + ", SELAMATT SKOR KAMU " + ang + "! Selamat menjadi senior jamet yeah."
+                        kata2 = "Hai kak "+ username + ", SELAMATT SKOR KAMU " + ang + "! Selamat menjadi JAMET SENIOR, semoga bisa menjadi panutan juniornya ya!."
                         my_image = senior
+                        titel = "senior"
+
                     elif angka > 80 and angka < 96:
-                        kata2 = "Skor kejametan kamu: " + ang + ", cie,,, jamet expert.. bisa nie dipajang di rumah."
+                        kata2 = "Skor kejametan kamu: " + ang + ", cie,,, JAMET EXPERT.. bisa nie dipajang di rumah dan dipamerin ke mamah! selamat!."
                         my_image = expert
+                        titel = "expert"
 
                     elif angka > 95 and angka < 101:
-                        kata2 = "BEUH GAK MAIN-MAIN, skor kejametan kak " + username + " " + ang + "! KAMU PANTAS MENDAPAT TITEL INI"
+                        kata2 = "BEUH GAK MAIN-MAIN, skor kejametan kak " + username + " " + ang + "! KAMU PANTAS MENDAPAT TITEL INI, SEMOGA SEGERA TOBAT YAH"
                         my_image = tothebone
-                        
+                        titel = "tothebone"
+                    
+                    StreamListener.titel_sebelum = titel
+                    
+                                        
                     image_editable = ImageDraw.Draw(my_image)
                     
                     #settingan biar nengah
@@ -144,9 +173,14 @@ class StreamListener(tweepy.StreamListener):
 
                     #nama orangnye
                     image_editable.text(((W-w)/2, (H-h)/2), username , font=title_font,  fill="white")
-                    
-                    #tanggal hari ini
-                    #image_editable.text((350,570), date, font=date_font, align="right", anchor ="rs", fill="white")
+
+
+                    #tanggal
+                    W, H = (1080,80)
+                    w, h = image_editable.textsize(date, font=date_font)
+                    h += int(h*0.21)
+
+                    image_editable.text(((W-w)/2, (H-h)/2), date , font=date_font,  fill="white")
                     
                     my_image.save("./asset/result.jpg")
                     
@@ -190,7 +224,7 @@ class StreamListener(tweepy.StreamListener):
                 #reply suruh follow dulu
                 else:
                     time.sleep(60)
-                    api.update_status("@" + status.user.screen_name + " " + 'Follow dulu  ngab, terus coba lagi', in_reply_to_status_id=status.id)
+                    api.update_status("@" + status.user.screen_name + " " + 'Follow dulu ngab, terus coba lagi', in_reply_to_status_id=status.id)
                    
                     print(">"  +
                         status.user.screen_name + ": must follow first"  + " ( replied )") 
