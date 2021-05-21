@@ -130,7 +130,9 @@ class StreamListener(tweepy.StreamListener):
                     username = status.user.screen_name
                     x = datetime.datetime.now()
 
-                    x = pd.to_datetime(x).tz_convert('Etc/GMT+7')
+                    
+                    tz = timezone("Etc/GMT+7")
+                    x = x.replace(tzinfo=tz)                   
 
                     tahun = x.year
                     bulan = x.strftime("%B")
