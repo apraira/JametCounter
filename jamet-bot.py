@@ -189,7 +189,7 @@ class StreamListener(tweepy.StreamListener):
 
                 #reply suruh follow dulu
                 else:
-                    time.sleep(20)
+                    time.sleep(60*5)
                     api.update_status("@" + status.user.screen_name + " " + 'Follow dulu  ngab, terus coba lagi', in_reply_to_status_id=status.id)
                    
                     print(">"  +
