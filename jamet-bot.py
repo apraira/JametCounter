@@ -9,9 +9,7 @@ import datetime
 from PIL import Image, ImageFont, ImageDraw 
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
-import pandas as pd
-from pytz import timezone
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 
 
 
@@ -133,8 +131,8 @@ class StreamListener(tweepy.StreamListener):
                     x = datetime.datetime.now()
 
                     
-                    tz = timezone("Etc/GMT+7")
-                    x = x.replace(tzinfo=tz)                   
+                    tz = timezone(timedelta(hours=7))
+                    x = x.astimezone(tz)                  
 
                     tahun = x.year
                     bulan = x.strftime("%B")
