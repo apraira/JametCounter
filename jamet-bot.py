@@ -38,7 +38,7 @@ class StreamListener(tweepy.StreamListener):
 
     def on_status(self, status):
         # Static variable
-        maks = 20
+        maks = 30
         print('starting prediction')
 
         # Dynamic Variabel
@@ -83,6 +83,17 @@ class StreamListener(tweepy.StreamListener):
                                       'Maaf followers harus di atas 10 untuk menggunakan bot ini.', in_reply_to_status_id=status.id)
                 print(str(StreamListener.tweet_counter) + ". (less than 10 followers)" + status.user.screen_name +
                           ": " + status.text + " ( replied )")
+
+            elif StreamListener.tweet_counter > maks:
+                stream.stop()
+                print("istirahat sejam")
+                nama = "ISTIRAHAT 1 JAM"
+                api.update_profile(nama)
+                time.sleep(3600)
+                nama = "Seberapa Jamet Kamu?"
+                api.update_profile(nama)
+                stream.filter(track=["@jametcounter"], stall_warnings=True)
+                print("mulai lagi")
 
             else:
                     # taro sini
@@ -213,12 +224,24 @@ class StreamListener(tweepy.StreamListener):
                 print("> (is replyied)" + status.user.screen_name +
                           ": " + status.text + " ( skipped )")
 
+            elif StreamListener.tweet_counter > maks:
+                stream.stop()
+                print("istirahat sejam")
+                nama = "ISTIRAHAT 1 JAM"
+                api.update_profile(nama)
+                time.sleep(3600)
+                nama = "Seberapa Jamet Kamu?"
+                api.update_profile(nama)
+                stream.filter(track=["@jametcounter"], stall_warnings=True)
+                print("mulai lagi")
+
                 # reply suruh follow dulu
             else:
                 time.sleep(30)
                 api.update_status("@" + status.user.screen_name + " " + 'Follow dulu ngab, terus coba lagi', in_reply_to_status_id=status.id)
 
                 print(">" + status.user.screen_name + ": must follow first"  + " ( replied )")
+            
 
 
 
