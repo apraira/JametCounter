@@ -85,6 +85,7 @@ class StreamListener(tweepy.StreamListener):
                           ": " + status.text + " ( replied )")
 
             elif StreamListener.tweet_counter > maks:
+                StreamListener.tweet_counter = 0
                 stream.stop()
                 print("istirahat sejam")
                 nama = "ISTIRAHAT 1 JAM"
@@ -225,6 +226,7 @@ class StreamListener(tweepy.StreamListener):
                           ": " + status.text + " ( skipped )")
 
             elif StreamListener.tweet_counter > maks:
+                StreamListener.tweet_counter = 0
                 stream.stop()
                 print("istirahat sejam")
                 nama = "ISTIRAHAT 1 JAM"
@@ -271,6 +273,7 @@ while True:
         maks = 20
 
         if total > maks:
+            total = 0
             stream.stop()
             print("istirahat sejam")
             nama = "ISTIRAHAT 1 JAM"
