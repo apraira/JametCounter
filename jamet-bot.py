@@ -39,7 +39,7 @@ class StreamListener(tweepy.StreamListener):
     
     def on_status(self, status):
         # Static variable
-        maks = 10
+        maks = 20
         print('starting prediction')
         
         
@@ -244,8 +244,15 @@ class StreamListener(tweepy.StreamListener):
             print('Max num reached = ' +
                               str(StreamListener.tweet_counter))
             StreamListener.tweet_counter = 0
-            print('Istirahat 5 Menit')
-            time.sleep(60)
+
+            nama = "ISTIRAHAT 1 JAM"
+            api.update_profile(nama)
+            print('Istirahat 1 Jam')
+            stream.stop()
+            time.sleep(3600)
+            stream.filter(track=["@jametcounter"], stall_warnings=True)
+            nama = "Seberapa Jamet Kamu?"
+            api.update_profile(nama)            
             print ("starting prediction again")
             
         
