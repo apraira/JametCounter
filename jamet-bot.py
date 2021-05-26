@@ -76,24 +76,14 @@ class StreamListener(tweepy.StreamListener):
                           ": " + status.text + " ( skipped )")
 
                 # kalo followers kurang dari 40
-            elif nfolls < 10:
+            elif nfolls < 5:
 
                 time.sleep(10)
                 api.update_status("@" + status.user.screen_name + " " +
-                                      'Maaf followers harus di atas 10 untuk menggunakan bot ini.', in_reply_to_status_id=status.id)
-                print(str(StreamListener.tweet_counter) + ". (less than 10 followers)" + status.user.screen_name +
+                                      'Maaf followers harus di atas 5 untuk menggunakan bot ini.', in_reply_to_status_id=status.id)
+                print(str(StreamListener.tweet_counter) + ". (less than 5 followers)" + status.user.screen_name +
                           ": " + status.text + " ( replied )")
 
-            elif StreamListener.tweet_counter > maks:
-                stream.stop()
-                print("istirahat sejam")
-                nama = "ISTIRAHAT 1 JAM"
-                api.update_profile(nama)
-                time.sleep(3600)
-                nama = "Seberapa Jamet Kamu?"
-                api.update_profile(nama)
-                stream.filter(track=["@jametcounter"], stall_warnings=True)
-                print("mulai lagi")
 
             else:
                     # taro sini
@@ -195,7 +185,7 @@ class StreamListener(tweepy.StreamListener):
                     # load hasil
                 hasil = "./asset/result.jpg"
 
-                time.sleep(30)
+                time.sleep(43)
                     # posting the tweet
                 api.update_with_media(hasil, "@" + status.user.screen_name + " " + kata2, in_reply_to_status_id=status.id)
 
@@ -224,20 +214,10 @@ class StreamListener(tweepy.StreamListener):
                 print("> (is replyied)" + status.user.screen_name +
                           ": " + status.text + " ( skipped )")
 
-            elif StreamListener.tweet_counter > maks:
-                stream.stop()
-                print("istirahat sejam")
-                nama = "ISTIRAHAT 1 JAM"
-                api.update_profile(nama)
-                time.sleep(3600)
-                nama = "Seberapa Jamet Kamu?"
-                api.update_profile(nama)
-                stream.filter(track=["@jametcounter"], stall_warnings=True)
-                print("mulai lagi")
-
+            
                 # reply suruh follow dulu
             else:
-                time.sleep(30)
+                time.sleep(43)
                 api.update_status("@" + status.user.screen_name + " " + 'Follow dulu ngab, terus coba lagi', in_reply_to_status_id=status.id)
 
                 print(">" + status.user.screen_name + ": must follow first"  + " ( replied )")
@@ -268,25 +248,11 @@ stream = tweepy.Stream(auth=api.auth, listener=stream_listener)
 
 while True:
     try:
-        maks = 20
-
-        if total > maks:
-            total = 0
-            stream.stop()
-            print("istirahat sejam")
-            nama = "ISTIRAHAT 1 JAM"
-            api.update_profile(nama)
-            time.sleep(3600)
-            nama = "Seberapa Jamet Kamu?"
-            api.update_profile(nama)
-            stream.filter(track=["@jametcounter"], stall_warnings=True)
-            print("mulai lagi")
-
-        else:
-            nama = "Seberapa Jamet Kamu?"
-            api.update_profile(nama)
-            stream.filter(track=["@jametcounter"], stall_warnings=True)
-            print("mulai")
+        nama = "Seberapa Jamet Kamu?"
+        api.update_profile(nama)
+        stream.filter(track=["@jametcounter"], stall_warnings=True)
+        print("mulai")
+            
 
     except Exception as e:
         print(e)
