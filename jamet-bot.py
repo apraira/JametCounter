@@ -85,14 +85,14 @@ class StreamListener(tweepy.StreamListener):
                           ": " + status.text + " ( replied )")
 
             elif StreamListener.tweet_counter > maks:
-                
+                stream.stop()
                 print("istirahat sejam")
                 nama = "ISTIRAHAT 1 JAM"
                 api.update_profile(nama)
                 time.sleep(3600)
                 nama = "Seberapa Jamet Kamu?"
                 api.update_profile(nama)
-                stream.stop()
+                stream.filter(track=["@jametcounter"], stall_warnings=True)
                 print("mulai lagi")
 
             else:
@@ -225,14 +225,14 @@ class StreamListener(tweepy.StreamListener):
                           ": " + status.text + " ( skipped )")
 
             elif StreamListener.tweet_counter > maks:
-                
+                stream.stop()
                 print("istirahat sejam")
                 nama = "ISTIRAHAT 1 JAM"
                 api.update_profile(nama)
                 time.sleep(3600)
                 nama = "Seberapa Jamet Kamu?"
                 api.update_profile(nama)
-                stream.stop()
+                stream.filter(track=["@jametcounter"], stall_warnings=True)
                 print("mulai lagi")
 
                 # reply suruh follow dulu
@@ -268,7 +268,7 @@ stream = tweepy.Stream(auth=api.auth, listener=stream_listener)
 
 while True:
     try:
-        maks = 30
+        maks = 20
 
         if total > maks:
             total = 0
@@ -276,7 +276,7 @@ while True:
             print("istirahat sejam")
             nama = "ISTIRAHAT 1 JAM"
             api.update_profile(nama)
-            time.sleep(1)
+            time.sleep(3600)
             nama = "Seberapa Jamet Kamu?"
             api.update_profile(nama)
             stream.filter(track=["@jametcounter"], stall_warnings=True)
