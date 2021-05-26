@@ -12,7 +12,7 @@ import matplotlib.image as mpimg
 from datetime import datetime, timedelta, timezone
 
 
-# sekarang lagi make piku
+# sekarang lagi make pikuhhh
 CONSUMER_KEY = environ['CONSUMER_KEY']
 CONSUMER_SECRET = environ['CONSUMER_SECRET']
 ACCESS_TOKEN = environ['ACCESS_TOKEN']
